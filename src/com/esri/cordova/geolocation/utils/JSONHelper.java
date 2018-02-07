@@ -130,6 +130,11 @@ public final class JSONHelper {
                 json.put("bearing", location.getBearing());
                 json.put("speed", location.getSpeed());
                 json.put("timestamp", location.getTime());
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+                  json.put("mock", location.isFromMockProvider());
+                }
+
                 json.put("cached", cached);
             }
             catch (JSONException exc) {
@@ -181,6 +186,10 @@ public final class JSONHelper {
                 json.put("bufferedLatitude", bufferLat);
                 json.put("bufferedLongitude", bufferedLon);
                 json.put("bufferedAccuracy", bufferedAccuracy);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+                  json.put("mock", location.isFromMockProvider());
+               }
             }
             catch (JSONException exc) {
                 logJSONException(exc);
